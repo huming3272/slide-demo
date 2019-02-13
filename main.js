@@ -11,6 +11,23 @@ setInterval(()=>{
 },3000)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//用函数保证代码整洁重复率低、数据不相互访问
 function getImage(n){
     return $(`.images > img:nth-child(${x(n)})`)
 }

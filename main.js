@@ -1,36 +1,25 @@
 /* 本次实现轮播思路是先将图片放于页面右侧堆叠隐藏，然后第一张图在中间规定区域显示，接着往左平移，随后进入右侧堆叠 */
-let n
-初始化()
+$('.images > img:nth-child(1)').addClass('current')
+$('.images > img:nth-child(2)').addClass('enter')
+$('.images > img:nth-child(3)').addClass('enter')
+$('.images > img:nth-child(4)').addClass('enter')
+$('.images > img:nth-child(5)').addClass('enter')
+let n = 1
 
 setInterval(()=>{
-    makeLeave(getImage(n)).one('transitionend',(e)=>{
-    makeEnter($(e.currentTarget))
+    $(`.images > img:nth-child(${x(n)})`).removeClass('current').addClass('leave')
+    //`.images > img:nth-child(${x(n)})`
+    .one('transitionend', (e)=>{
+        $(e.currentTarget).removeClass('leave').addClass('enter')
     })
-    makeCurrent(getImage(n+1))
-    n +=1
-},3000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//用函数保证代码整洁重复率低、数据不相互访问
-function getImage(n){
-    return $(`.images > img:nth-child(${x(n)})`)
-}
+    console.log('函数1 x(n):' + x(n))
+    $(`.images > img:nth-child(${x(n + 1)})`).removeClass('enter').addClass('current')
+    //`.images > img:nth-child(${x(n+1)})`
+    n += 1
+    //es6写法 得到${}中的值给nth-child()的括号
+    console.log('函数2 x(n):' + x(n))
+    console.log('setInterval的n'+n)
+}, 3000)
 
 function x(n) {
     console.log('x(n)中的'+n)
@@ -42,23 +31,4 @@ function x(n) {
         
     }// n = 1 2 3
     return n
-    //对n判断整除5则为5，其他都是1%5=1,2%5=2
-}
-function 初始化(){
-    n = 1
-    $(`.images > img:nth-child(${n})`).addClass('current')
-    .siblings().addClass('enter')
-    //es6写法 得到${}中的值给nth-child()的括号
-}
-
-function makeCurrent($node){
-    return $node.removeClass('enter leave').addClass('current')
-}
-
-function makeLeave($node){
-    return $node.removeClass('current enter').addClass('leave')
-}
-
-function makeEnter($node){
-    return $node.removeClass('current leave').addClass('enter')
 }

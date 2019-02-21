@@ -1,0 +1,19 @@
+* {margin: 0;padding: 0;}
+* {box-sizing: border-box;}
+
+.window {
+    width: 400px;
+    height: 300px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.images {
+    display:flex;
+}
+
+.images > img{
+    width: 100%;
+    
+}
+
